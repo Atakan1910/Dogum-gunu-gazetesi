@@ -1,0 +1,159 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ===== TIPOGRAFI ===== */
+body {
+  font-family: "Lora", Georgia, serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ===== KAĞIT DOKUSU KATMANI ===== */
+.paper-texture {
+  position: relative;
+  overflow: hidden;
+}
+
+.paper-texture::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.07;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* ===== ESKİTME EFEKTİ: KÖŞE KARARMASI + KATLAMA İZİ ===== */
+.paper-aged::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  background:
+    radial-gradient(ellipse at center, transparent 55%, rgba(62, 42, 20, 0.22) 100%),
+    linear-gradient(
+      to bottom,
+      transparent 49.5%,
+      rgba(0, 0, 0, 0.09) 49.8%,
+      rgba(255, 255, 255, 0.12) 50.2%,
+      transparent 50.6%
+    );
+}
+
+/* ===== DROP CAP — KLASİK MATBAA BÜYÜK BAŞ HARF ===== */
+.drop-cap::first-letter {
+  float: left;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 3.6rem;
+  line-height: 0.82;
+  padding-right: 0.55rem;
+  padding-top: 0.15rem;
+  font-weight: 800;
+  color: inherit;
+}
+
+/* ===== VİNTAGE BUTON STİLLERİ — DAKTİLO TUŞU / MÜHÜR HİSSİ ===== */
+.btn-vintage {
+  font-family: "Lora", Georgia, serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border: 1.5px solid #5c5347;
+  background: transparent;
+  color: #d4c9b8;
+  padding: 0.4rem 0.9rem;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.btn-vintage:hover {
+  background: rgba(212, 188, 155, 0.12);
+  border-color: #a09080;
+  color: #f0e8d8;
+}
+
+.btn-vintage:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.btn-vintage-primary {
+  background: #8b7355;
+  border-color: #8b7355;
+  color: #1e1b18;
+  font-weight: 700;
+}
+
+.btn-vintage-primary:hover {
+  background: #a08a6c;
+  border-color: #a08a6c;
+}
+
+.btn-vintage-active {
+  background: rgba(212, 188, 155, 0.18);
+  border-color: #c4a87a;
+  color: #e8d8c0;
+}
+
+/* ===== VİNTAGE INPUT / SELECT STİLLERİ ===== */
+.input-vintage {
+  font-family: "Lora", Georgia, serif;
+  font-size: 0.8125rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1.5px solid #4a4238;
+  color: #e0d8c8;
+  padding: 0.4rem 0.65rem;
+  transition: border-color 0.15s;
+}
+
+.input-vintage:focus {
+  outline: none;
+  border-color: #a09080;
+  box-shadow: 0 0 0 1px rgba(160, 144, 128, 0.2);
+}
+
+.input-vintage::placeholder {
+  color: #6b6050;
+  font-style: italic;
+}
+
+/* ===== AHŞAP MASA DOKUSU (DIŞ ZEMİN) ===== */
+.desk-surface {
+  background-color: #24211e;
+  background-image:
+    radial-gradient(ellipse at 30% 20%, rgba(60, 50, 35, 0.3) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 80%, rgba(40, 35, 28, 0.25) 0%, transparent 50%);
+}
+
+/* ===== YAZDIRMA KURALLARI ===== */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 8mm;
+  }
+
+  body {
+    background: white !important;
+    color: black !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  .print-container {
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .print-newspaper {
+    box-shadow: none !important;
+    border-width: 1.5px !important;
+  }
+}
